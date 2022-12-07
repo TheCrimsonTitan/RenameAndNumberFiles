@@ -15,6 +15,28 @@ function ChangeJPG () {
         done
 }
 
+function ChangeMp4 {
+
+        echo "Basename: $1"
+        echo "Offset: $2"
+
+        offset=$2
+
+
+        for f in $PWD/*.mp4
+        do
+            mv -n "$f" "$1 ($offset).mp4"
+        offset=$((offset+1))
+
+        done
+}
+
+
+echo "What File Type are we renaming?"
+echo "A) JPG"
+echo "B) MP4"
+read UserChoice
+
 echo "What is the path?"
 read PathToFiles
 echo $PathToFiles
@@ -32,17 +54,15 @@ FILES=$PathToFiles
 cd $PathToFiles
 #echo "inside $PWD"
 
-ChangeJPG "$NameOfFile" "$offset"
 
-function ChangeMp4 {
+case $UserChoice in
+	
+	A)
+	ChangeJPG "$NameOfFile" "$offset"
+        ;;
 
-        for f in $files/*.mp4
-        do
-            mv -n "$f" "$nameoffile ($offset).mp4"
-        offset=$((offset+1))
+	B)
+	ChangeMp4 "$NameOfFile" "$offset"
+	;;
 
-        done
-}
-
-#       fi
-
+esac
