@@ -2,6 +2,7 @@ import os
 
 def main():
 
+    #User Input for the directory, the new name they need, and the extension they wany
     Directory=input("Type the path to the files")
     NewName=input("What is the new name of the files")
     Extension=input("What is the extension of the files")
