@@ -5,8 +5,8 @@ import PySimpleGUI as sg
 
 def RenameFiles(Directory,NewName,Extension):
 
-    print(Directory,NewName,Extension)
-"""
+#    print(NewName)
+#    print(Extension)
     i=0
     for EachFile in os.listdir(Directory):
         #print(EachFile)
@@ -16,11 +16,10 @@ def RenameFiles(Directory,NewName,Extension):
         #print(SourceFile)
         
         DestFile=Directory+"/"+NewName+str(i)+str(Extension)
-        print(DestFile)
+       # print(DestFile)
         
         i+=1
         os.rename(SourceFile, DestFile)
-"""
 
 def main():
 
@@ -40,16 +39,16 @@ def main():
 #keep getting unexpected argument in RenameFiles
     while True:
         event, values = window.read()
-        print(event, values)
+        #print(event, values)
         if event in (sg.WINDOW_CLOSED, "Exit"):
             break
         if event == "Rename Files :)":
             RenameFiles(
-                FilePath = values["-DIR-"],
+               
+                Directory = values["-DIR-"],
                 NewName = values["-NAME-"],
-                Extension = ["-EXT-"],
+                Extension = values["-EXT-"], 
             )
-
     window.close()
 
 if __name__ == '__main__':
