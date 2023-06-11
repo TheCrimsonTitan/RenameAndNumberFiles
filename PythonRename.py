@@ -1,35 +1,11 @@
 import os
 import PySimpleGUI as sg
 
-def main():
-
-    #User Input for the directory, the new name they need, and the extension they wany
-   # Directory=input("Type the path to the files")
-   # NewName=input("What is the new name of the files")
-   # Extension=input("What is the extension of the files")
-
-    layout = [
-
-            [sg.Text("Folder of files:"), sg.Input(key="-DIR-"), sg.FolderBrowse()],
-            [sg.Text("The new name should be: "), sg.Input(key="-NAME-")],
-            [sg.Text("The extensions should be: "), sg.Input(key="-EXT-")],
-            [sg.Exit(), sg.Button("Rename Files :)")],
-
-            ]
 
 
+def RenameFiles(Directory,NewName,Extension):
 
-    window = sg.Window("Mass Rename Files", layout)
-
-    while True:
-        event, values = window.read()
-        #print(event,values)
-        if event in (sg.WINDOW_CLOSED, "Exit"):
-            break
-
-    window.close()
-
-
+    print(Directory,NewName,Extension)
 """
     i=0
     for EachFile in os.listdir(Directory):
@@ -45,6 +21,36 @@ def main():
         i+=1
         os.rename(SourceFile, DestFile)
 """
+
+def main():
+
+    layout = [
+
+            [sg.Text("Folder of files:"), sg.Input(key="-DIR-"), sg.FolderBrowse()],
+            [sg.Text("The new name should be: "), sg.Input(key="-NAME-")],
+            [sg.Text("The extensions of the files are: "), sg.Input(key="-EXT-")],
+            [sg.Exit(), sg.Button("Rename Files :)")],
+
+            ]
+
+
+
+    window = sg.Window("Mass Rename Files", layout)
+
+#keep getting unexpected argument in RenameFiles
+    while True:
+        event, values = window.read()
+        print(event, values)
+        if event in (sg.WINDOW_CLOSED, "Exit"):
+            break
+        if event == "Rename Files :)":
+            RenameFiles(
+                FilePath = values["-DIR-"],
+                NewName = values["-NAME-"],
+                Extension = ["-EXT-"],
+            )
+
+    window.close()
 
 if __name__ == '__main__':
     main()
