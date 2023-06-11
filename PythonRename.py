@@ -11,8 +11,9 @@ def main():
     layout = [
 
             [sg.Text("Folder of files:"), sg.Input(key="-DIR-"), sg.FolderBrowse()],
-            [sg.Text("Folder of files:"), sg.Input(key="-DIR-"), sg.FolderBrowse()],
-            [sg.Text("Folder of files:"), sg.Input(key="-DIR-"), sg.FolderBrowse()],
+            [sg.Text("The new name should be: "), sg.Input(key="-NAME-")],
+            [sg.Text("The extensions should be: "), sg.Input(key="-EXT-")],
+            [sg.Exit(), sg.Button("Rename Files :)")],
 
             ]
 
@@ -22,7 +23,7 @@ def main():
 
     while True:
         event, values = window.read()
-        print(event,values)
+        #print(event,values)
         if event in (sg.WINDOW_CLOSED, "Exit"):
             break
 
