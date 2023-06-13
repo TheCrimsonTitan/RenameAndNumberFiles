@@ -15,7 +15,7 @@ def RenameFiles(Directory,NewName,Extension):
         SourceFile=Directory+"/"+EachFile
         #print(SourceFile)
         
-        DestFile=Directory+"/"+NewName+str(i)+str(Extension)
+        DestFile=Directory+"/"+NewName+" "+"("+str(i)+")"+str(Extension)
        # print(DestFile)
         
         i+=1
