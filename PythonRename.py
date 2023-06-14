@@ -3,11 +3,12 @@ import PySimpleGUI as sg
 
 
 
-def RenameFiles(Directory,NewName,Extension):
+def RenameFiles(Directory,NewName,Extension,StartNum):
 
 #    print(NewName)
 #    print(Extension)
-    i=0
+    i=StartNum
+    print(type(i))
     for EachFile in os.listdir(Directory):
         #print(EachFile)
         
@@ -15,7 +16,7 @@ def RenameFiles(Directory,NewName,Extension):
         SourceFile=Directory+"/"+EachFile
         #print(SourceFile)
         
-        DestFile=Directory+"/"+NewName+" "+"("+str(i)+")"+str(Extension)
+        DestFile=Directory+"/"+NewName+" "+ "(" + str(i) + ")" +str(Extension)
        # print(DestFile)
         
         i+=1
@@ -28,6 +29,7 @@ def main():
             [sg.Text("Folder of files:"), sg.Input(key="-DIR-"), sg.FolderBrowse()],
             [sg.Text("The new name should be: "), sg.Input(key="-NAME-")],
             [sg.Text("The extensions of the files are: "), sg.Input(key="-EXT-")],
+            [sg.Text("What number do you want to start at?"), sg.Input(key="-NUM-")],
             [sg.Exit(), sg.Button("Rename Files :)")],
 
             ]
@@ -48,6 +50,7 @@ def main():
                 Directory = values["-DIR-"],
                 NewName = values["-NAME-"],
                 Extension = values["-EXT-"], 
+                StartNum = int(values["-NUM-"]),
             )
     window.close()
 
